@@ -69,7 +69,7 @@
         </section>
         <section class="add_task input-group">
           <input
-            id="add_task_label"
+            id="add_task_input"
             type="text"
             class="form-control"
             placeholder="افزودن کار جدید ..."
@@ -82,6 +82,21 @@
             </button>
           </div>
         </section>
+        <div class="edit_task_modal">
+          <div class="modal_content bg-light p-3 border border-secondary">
+            <div class="modal_header border-bottom border-secondary mb-2 pb-2">
+              <button class="btn btn-info close">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+            <div class="modal_body border-bottom border-secondary mb-2 pb-2">
+              <textarea name="" id="edit_input" class="edit_input" cols="30" rows="3"></textarea>
+            <div class="modal_footer">
+              <button class="btn btn-primary save">ثبت</button>
+              <button class="btn btn-outline-secondary cancel">لغو</button>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
     <script src="js/main.js"></script>
