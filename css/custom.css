@@ -1,0 +1,70 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+body {
+  width: 100%;
+  direction: rtl;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: 12px;
+}
+.profile a {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+.profile image {
+  border-radius: 50%;
+}
+.navbar {
+  display: none;
+}
+.add_task {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  margin: auto;
+  text-align: center;
+  max-width: 500px;
+}
+.add_task .btn {
+  border-radius: 0.375rem 0 0 0.375rem;
+}
+.add_task input {
+  border-radius: 0 0.375rem 0.375rem 0 !important;
+}
+.task {
+  border-bottom: dashed 2px #6c757d;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+.task_name {
+  padding: 5px;
+  padding-bottom: 15px;
+  font-size: 20px;
+}
+.task_buttons {
+  margin-right: auto;
+}
+.todo {
+  min-height: 120px;
+}
+.checkbox input {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.remove_task_btn,
+.edit_task_btn {
+  width: 32px;
+  height: 32px;
+  padding: 0px;
+}

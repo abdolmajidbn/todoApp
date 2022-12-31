@@ -1,0 +1,15 @@
+{
+  "name": "todoapp",
+  "version": "1.0.0",
+  "description": "This is an open source program currently intended for the web, with todo app you will not forget what you are doing or want to do.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "abdolmajid bazmandegan",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.2"
+  }
+}
