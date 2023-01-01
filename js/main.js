@@ -21,7 +21,7 @@ add_task_input.addEventListener("keypress", (e) => {
 
 function task_format(task_name) {
   return `
-        <div class="task" task_id="${task_id}">
+        <div class="task" id="${task_id}">
         <div class="checkbox">
           <input type="checkbox" />
         </div>
@@ -86,11 +86,12 @@ function edit_task(e) {
   edit_task_modal.style.display = "flex";
   edit_input.value = task_name.innerHTML;
   save_btn.addEventListener("click", () => {
-    console.log(edit_input.value);
-    task_name.value = "";
-    console.log(task_name);
-    console.log(task_name.parentElement);
-    // close_btn.click();
+    console.log(document.getElementById(`${task_id}`));
+    document
+      .getElementById(`${task_id}`)
+      .querySelector(".task_name").innerHTML = edit_input.value;
+
+    close_btn.click();
   });
   close_btn.addEventListener("click", () => {
     edit_task_modal.remove();
