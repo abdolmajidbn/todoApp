@@ -69,14 +69,13 @@ body {
   padding: 0px;
 }
 .edit_task_modal {
-  display: none;
   position: fixed;
   z-index: 1000;
   width: 100%;
   height: 100%;
   background-color: #ffffff54;
   top: 0;
-  /* display: flex; */
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;

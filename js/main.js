@@ -3,7 +3,47 @@ const add_task_btn = document.querySelector("#add_task_btn");
 const remove_task_btn = document.querySelectorAll(".remove_task_btn");
 const add_task_input = document.querySelector("#add_task_input");
 let todo = document.querySelector(".todo");
+let modal = document.querySelector(".edit_task_modal");
+let edit_input = modal.querySelector(".edit_input");
+let close_btn = modal.querySelector(".close");
+let cancel_btn = modal.querySelector(".cancel");
+let save_btn = modal.querySelector(".save");
+let todos = JSON.parse(localStorage.getItem("todo-list"));
+localStorage.setItem("todo-list", JSON.stringify("tset"));
 
+function showTodo(filter) {
+  let liTag = "";
+  if (todos) {
+    todos.forEach((todo, id) => {
+      let completed = todo.status == "completed" ? "checked" : "";
+      if (filter == todo.status || filter == "all") {
+        liTag += `
+        <li class="task">
+          <label for="${id}">
+              <input onclick="updateStatus(this)" type="checkbox" id="${id}" ${completed}>
+              <p class="${completed}">${todo.name}</p>
+          </label>
+          <div class="settings">
+              <i onclick="showMenu(this)" class="uil uil-ellipsis-h"></i>
+              <ul class="task-menu">
+                  <li onclick='editTask(${id}, "${todo.name}")'><i class="uil uil-pen"></i>Edit</li>
+                  <li onclick='deleteTask(${id}, "${filter}")'><i class="uil uil-trash"></i>Delete</li>
+              </ul>
+          </div>
+        </li>`;
+      }
+    });
+  }
+  taskBox.innerHTML = liTag || `<span>You don't have any task here</span>`;
+  let checkTask = taskBox.querySelectorAll(".task");
+  !checkTask.length
+    ? clearAll.classList.remove("active")
+    : clearAll.classList.add("active");
+  taskBox.offsetHeight >= 300
+    ? taskBox.classList.add("overflow")
+    : taskBox.classList.remove("overflow");
+}
+showTodo("all");
 //add new task
 add_task_btn.addEventListener("click", () => {
   if (add_task_input.value != "") {
@@ -47,25 +87,6 @@ function task_format(task_name) {
 }
 //end add task
 
-function create_modal() {
-  return `
-        <div class="edit_task_modal" id="${task_id}">
-          <div class="modal_content bg-light p-3 border border-secondary">
-            <div class="modal_header border-bottom border-secondary mb-2 pb-2">
-              <button class="btn btn-info close">
-                <i class="bi bi-x-lg"></i>
-              </button>
-            </div>
-            <div class="modal_body border-bottom border-secondary mb-2 pb-2">
-              <textarea name="" id="edit_input" class="edit_input" cols="30" rows="3"></textarea>
-            <div class="modal_footer">
-              <button class="btn btn-primary save">ثبت</button>
-              <button class="btn btn-outline-secondary cancel">لغو</button>
-            </div>
-          </div>
-        </div>
-  `;
-}
 //remove task
 
 function remove_task(e) {
@@ -74,31 +95,11 @@ function remove_task(e) {
 // end remove task
 //edit task
 
-function edit_task(e) {
-  todo.innerHTML += create_modal(task_id);
-  let task_name = e.parentElement.parentElement.querySelector(".task_name");
-  console.log(task_name);
-  let edit_task_modal = document.querySelector(".edit_task_modal");
-  let edit_input = edit_task_modal.querySelector(".edit_input");
-  let save_btn = edit_task_modal.querySelector(".save");
-  let close_btn = edit_task_modal.querySelector(".close");
-  let cancel_btn = edit_task_modal.querySelector(".cancel");
-  edit_task_modal.style.display = "flex";
-  edit_input.value = task_name.innerHTML;
-  save_btn.addEventListener("click", () => {
-    console.log(document.getElementById(`${task_id}`));
-    document
-      .getElementById(`${task_id}`)
-      .querySelector(".task_name").innerHTML = edit_input.value;
+// function edit_task(e) {
+//   let task = e.parentElement.parentElement;
+//   let task_name = task.querySelector(".task_name");
+//   modal.style.display = "flex";
+//   edit_input.value = task_name.innerHTML;
+// }
 
-    close_btn.click();
-  });
-  close_btn.addEventListener("click", () => {
-    edit_task_modal.remove();
-  });
-  cancel_btn.addEventListener("click", () => {
-    close_btn.click();
-  });
-  console.log(e.parentElement.parentElement);
-}
 // end edit task
