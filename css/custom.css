@@ -45,16 +45,16 @@ body {
   display: flex;
   align-items: center;
   column-gap: 12px;
+  padding: 10px 0px;
 }
 .task_name {
   padding: 5px;
-  padding-bottom: 15px;
   font-size: 20px;
 }
 .task_buttons {
   margin-right: auto;
 }
-.todo {
+.todo_list {
   min-height: 120px;
 }
 .checkbox input {
@@ -67,6 +67,9 @@ body {
   width: 32px;
   height: 32px;
   padding: 0px;
+}
+.edit_task_btn {
+  margin-left: 10px;
 }
 .edit_task_modal {
   position: fixed;

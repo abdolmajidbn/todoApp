@@ -42,26 +42,9 @@
       </div>
       <main class="main">
         <section
-          class="todo container bg-light border border-secondary rounded mt-3 pb-3 pt-2"
-        >
-          <div class="task" task_id="14">
-            <div class="checkbox">
-              <input type="checkbox" />
-            </div>
-            <h4 class="task_name text-secondary">سلام 14 این یک تست است</h4>
-            <div class="task_buttons">
-              <button class="edit_task_btn btn btn-outline-secondary">
-                <i class="bi bi-pencil-fill"></i>
-              </button>
-              <button
-                onclick="remove_task(this)"
-                class="remove_task_btn btn btn-outline-danger"
-              >
-                <i class="bi bi-trash"></i>
-              </button>
-            </div>
-          </div>
-        </section>
+          id="todo_list"
+          class="todo_list container bg-light border border-secondary rounded mt-3 pb-3 pt-2"
+        ></section>
         <section class="add_task input-group">
           <input
             id="add_task_input"
@@ -85,7 +68,14 @@
               </button>
             </div>
             <div class="modal_body border-bottom border-secondary mb-2 pb-2">
-              <textarea name="" id="edit_input" class="edit_input" cols="30" rows="3"></textarea>
+              <textarea
+                name=""
+                id="edit_input"
+                class="edit_input"
+                cols="30"
+                rows="3"
+              ></textarea>
+            </div>
             <div class="modal_footer">
               <button class="btn btn-primary save">ثبت</button>
               <button class="btn btn-outline-secondary cancel">لغو</button>
