@@ -1,3 +1,7 @@
+:root {
+  --font: "vazirmatn", "Arial";
+}
+
 *,
 *::after,
 *::before {
@@ -6,6 +10,10 @@
 body {
   width: 100%;
   direction: rtl;
+  font-family: var(--font);
+}
+button {
+  font-family: unset;
 }
 .header {
   display: flex;
@@ -66,7 +74,7 @@ body {
 .edit_task_btn {
   width: 32px;
   height: 32px;
-  padding: 0px;
+  padding: 3px 0px 0px 0px;
 }
 .edit_task_btn {
   margin-left: 10px;
