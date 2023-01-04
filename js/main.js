@@ -1,10 +1,20 @@
 class Todo {
-  constructor(todoInputId, todoListId) {
-    //get static add-input and todolist
+  constructor(todoInputId, todoAddBtnId, todoListId) {
     this.todoInput = document.getElementById(todoInputId);
     this.todoList = document.getElementById(todoListId);
-    //TODO:add dynamic todo
-    this.todos = ["learn vue.js", "buy a ticket"];
+    this.todoAddBtn = document.getElementById(todoAddBtnId);
+
+    this.todos = [];
+    this.todoAddBtn.addEventListener("click", () => {
+      this.addTodo();
+      this.render();
+    });
+
+    this.todoInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        this.todoAddBtn.click();
+      }
+    });
     this.render();
   }
 
@@ -13,7 +23,16 @@ class Todo {
     for (const todo of this.todos) {
       todoOutPut.append(this.renderTodo(todo));
     }
+    this.todoList.innerText = "";
     this.todoList.append(todoOutPut);
+  }
+  addTodo() {
+    if (this.todoInput.value != "") {
+      const todo = this.todoInput.value;
+      this.todoInput.value = "";
+      this.todos.push(todo);
+      this.render();
+    }
   }
   //   <div class="task" task_id="14">
   //   <div class="checkbox">
@@ -64,4 +83,4 @@ class Todo {
   }
 }
 
-new Todo("add_task_input", "todo_list");
+new Todo("add_task_input", "add_task_btn", "todo_list");
