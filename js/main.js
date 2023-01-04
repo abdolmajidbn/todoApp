@@ -23,7 +23,9 @@ class Todo {
     this.todoList.innerText = "";
     if (this.todos.length == 0) {
       const infoMessage = document.createElement("p");
-      infoMessage.innerText = "لیست خالی است";
+      infoMessage.innerText =
+        "لیست کارها خالیه از قسمت پایین میتونید اضافه کنید !!!";
+      infoMessage.classList.add("message", "alert", "alert-info");
       this.todoList.append(infoMessage);
     } else {
       const todoOutPut = document.createElement("div");

@@ -93,3 +93,6 @@ body {
 .show_modal {
   display: flex;
 }
+.message {
+  font-weight: 300;
+}
