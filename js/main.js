@@ -19,6 +19,7 @@ class Todo {
   }
 
   render() {
+    this.todoList.innerText = "";
     if (this.todos.length == 0) {
       const infoMessage = document.createElement("p");
       infoMessage.innerText = "لیست خالی است";
@@ -28,7 +29,6 @@ class Todo {
       for (const todo of this.todos) {
         todoOutPut.append(this.renderTodo(todo));
       }
-      this.todoList.innerText = "";
       this.todoList.append(todoOutPut);
     }
   }
