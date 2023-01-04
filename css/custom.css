@@ -22,13 +22,26 @@ button {
   flex-direction: row;
   margin-top: 12px;
 }
+.header .title {
+  margin: 0;
+}
+menu .menu_btn {
+  padding: 5px 5px 0;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 2px #cff4fc;
+}
 .profile a {
   display: flex;
   align-items: center;
   column-gap: 12px;
 }
-.profile image {
-  border-radius: 50%;
+.profile img {
+  border: solid 2px #cff4fc;
 }
 .navbar {
   display: none;
