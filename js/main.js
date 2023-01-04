@@ -4,8 +4,10 @@ class Todo {
     this.todoList = document.getElementById(todoListId);
     this.todoAddBtn = document.getElementById(todoAddBtnId);
     this.editModal = document.getElementById(editModalId);
-
     this.todos = [];
+    this.storage = window.localStorage;
+    this.loadList();
+
     this.todoAddBtn.addEventListener("click", () => {
       this.addTodo();
       this.render();
@@ -40,12 +42,14 @@ class Todo {
       const todo = this.todoInput.value;
       this.todoInput.value = "";
       this.todos.push(todo);
+      this.saveList();
       this.render();
     }
   }
   deleteTodo(todo) {
     const index = this.todos.indexOf(todo);
     this.todos.splice(index, 1);
+    this.saveList();
     this.render();
   }
   editTodo(todo) {
@@ -64,6 +68,7 @@ class Todo {
       const index = this.todos.indexOf(todo);
       this.todos[index] = modalInput.value;
       this.render();
+      this.saveList();
       close.click();
     });
     close.addEventListener("click", () => {
@@ -107,6 +112,17 @@ class Todo {
     });
 
     return task;
+  }
+  saveList() {
+    const str = JSON.stringify(this.todos);
+    console.log(str);
+    this.storage.setItem("todos", str);
+  }
+  loadList() {
+    const todos = this.storage.getItem("todos");
+    if (todos) {
+      this.todos = JSON.parse(todos);
+    }
   }
 }
 
