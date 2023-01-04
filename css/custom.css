@@ -90,3 +90,6 @@ body {
 .modal_footer {
   margin-right: auto;
 }
+.show_modal {
+  display: flex;
+}

@@ -1,8 +1,9 @@
 class Todo {
-  constructor(todoInputId, todoAddBtnId, todoListId) {
+  constructor(todoInputId, todoAddBtnId, todoListId, editModalId) {
     this.todoInput = document.getElementById(todoInputId);
     this.todoList = document.getElementById(todoListId);
     this.todoAddBtn = document.getElementById(todoAddBtnId);
+    this.editModal = document.getElementById(editModalId);
 
     this.todos = [];
     this.todoAddBtn.addEventListener("click", () => {
@@ -45,23 +46,29 @@ class Todo {
     this.todos.splice(index, 1);
     this.render();
   }
-  //   <div class="task" task_id="14">
-  //   <div class="checkbox">
-  //     <input type="checkbox" />
-  //   </div>
-  //   <h4 class="task_name text-secondary">سلام 14 این یک تست است</h4>
-  //   <div class="task_buttons">
-  //     <button class="edit_task_btn btn btn-outline-secondary">
-  //       <i class="bi bi-pencil-fill"></i>
-  //     </button>
-  //     <button
-  //       onclick="remove_task(this)"
-  //       class="remove_task_btn btn btn-outline-danger"
-  //     >
-  //       <i class="bi bi-trash"></i>
-  //     </button>
-  //   </div>
-  // </div>
+  editTodo(todo) {
+    this.editModal.classList.add("show_modal");
+    const modalInput = this.editModal.querySelector(".edit_input");
+    const saveBtn = this.editModal.querySelector(".save");
+    const close = this.editModal.querySelector(".close");
+    modalInput.value = todo;
+    modalInput.focus();
+    modalInput.addEventListener("keypress", (e) => {
+      if (e.key == "Enter") {
+        saveBtn.click();
+      }
+    });
+    saveBtn.addEventListener("click", () => {
+      const index = this.todos.indexOf(todo);
+      this.todos[index] = modalInput.value;
+      this.render();
+      close.click();
+    });
+    close.addEventListener("click", () => {
+      this.editModal.classList.remove("show_modal");
+    });
+  }
+
   renderTodo(todo) {
     const task = document.createElement("div");
     const divCheckbox = document.createElement("div");
@@ -93,9 +100,12 @@ class Todo {
     deleteButton.addEventListener("click", () => {
       this.deleteTodo(todo);
     });
+    editButton.addEventListener("click", () => {
+      this.editTodo(todo);
+    });
 
     return task;
   }
 }
 
-new Todo("add_task_input", "add_task_btn", "todo_list");
+new Todo("add_task_input", "add_task_btn", "todo_list", "edit_modal");
