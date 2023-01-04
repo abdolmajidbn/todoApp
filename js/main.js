@@ -40,6 +40,11 @@ class Todo {
       this.render();
     }
   }
+  deleteTodo(todo) {
+    const index = this.todos.indexOf(todo);
+    this.todos.splice(index, 1);
+    this.render();
+  }
   //   <div class="task" task_id="14">
   //   <div class="checkbox">
   //     <input type="checkbox" />
@@ -84,6 +89,10 @@ class Todo {
     deleteButton.append(deleteIcon);
     divButtons.append(editButton, deleteButton);
     task.append(divCheckbox, h4, divButtons);
+
+    deleteButton.addEventListener("click", () => {
+      this.deleteTodo(todo);
+    });
 
     return task;
   }
