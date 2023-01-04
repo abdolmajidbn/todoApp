@@ -19,12 +19,18 @@ class Todo {
   }
 
   render() {
-    const todoOutPut = document.createElement("div");
-    for (const todo of this.todos) {
-      todoOutPut.append(this.renderTodo(todo));
+    if (this.todos.length == 0) {
+      const infoMessage = document.createElement("p");
+      infoMessage.innerText = "لیست خالی است";
+      this.todoList.append(infoMessage);
+    } else {
+      const todoOutPut = document.createElement("div");
+      for (const todo of this.todos) {
+        todoOutPut.append(this.renderTodo(todo));
+      }
+      this.todoList.innerText = "";
+      this.todoList.append(todoOutPut);
     }
-    this.todoList.innerText = "";
-    this.todoList.append(todoOutPut);
   }
   addTodo() {
     if (this.todoInput.value != "") {
