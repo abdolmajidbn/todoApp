@@ -96,3 +96,10 @@ body {
 .message {
   font-weight: 300;
 }
+button.close:hover {
+  color: red;
+  transform: rotate(10deg);
+}
+button.close:active {
+  border: unset;
+}
