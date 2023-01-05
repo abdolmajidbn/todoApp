@@ -31,12 +31,14 @@ class Todo {
       this.todoList.append(infoMessage);
     } else {
       const todoOutPut = document.createElement("div");
+      todoOutPut.classList.add("tasks");
       for (const todo of this.todos) {
         todoOutPut.append(this.renderTodo(todo));
       }
       this.todoList.append(todoOutPut);
     }
   }
+
   addTodo() {
     if (this.todoInput.value != "") {
       const todo = this.todoInput.value;
@@ -76,6 +78,12 @@ class Todo {
     });
   }
 
+  todoStatus(checkbox) {
+    checkbox.toggleAttribute("checked");
+    checkbox.classList.toggle("checked");
+    this.saveList();
+  }
+
   renderTodo(todo) {
     const task = document.createElement("div");
     const divCheckbox = document.createElement("div");
@@ -110,12 +118,14 @@ class Todo {
     editButton.addEventListener("click", () => {
       this.editTodo(todo);
     });
-
+    inputCheckbox.addEventListener("click", () => {
+      task.classList.toggle("done");
+      this.todoStatus(inputCheckbox);
+    });
     return task;
   }
   saveList() {
     const str = JSON.stringify(this.todos);
-    console.log(str);
     this.storage.setItem("todos", str);
   }
   loadList() {

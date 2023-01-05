@@ -62,6 +62,17 @@ menu .menu_btn {
 .add_task input {
   border-radius: 0 0.375rem 0.375rem 0 !important;
 }
+.tasks {
+  display: flex;
+  flex-direction: column;
+}
+.done {
+  order: 1;
+}
+.done .task_name {
+  text-decoration: line-through;
+  opacity: 0.8;
+}
 .task {
   border-bottom: dashed 2px #dee2e6;
   display: flex;
